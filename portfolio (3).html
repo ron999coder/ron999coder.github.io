@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ranojoy Saha — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --p:#7F77DD;--p-light:#EEEDFE;--p-mid:#AFA9EC;--p-dark:#3C3489;--p-darker:#26215C;
+  --t:#1D9E75;--t-light:#E1F5EE;--t-border:#5DCAA5;--t-dark:#085041;
+  --a:#D4537E;--a-light:#FBEAF0;--a-dark:#72243E;
+  --bg:#0A0F1E;--surf:#0F1524;--card:#141C2E;--card2:#1A2338;--border:#1E2D42;
+  --text:#E8EDF5;--muted:#6B7FA0;--hint:#3D5070;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:14px;line-height:1.6}
+
+/* ── LAYOUT ── */
+#shell{display:grid;grid-template-columns:220px 1fr;grid-template-rows:56px 1fr;height:100vh;width:100vw}
+
+/* ── TOPBAR ── */
+#topbar{grid-column:1/-1;background:var(--surf);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;position:relative}
+.tb-logo{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--p);letter-spacing:-.02em}
+.tb-right{display:flex;align-items:center;gap:16px}
+.avail-pill{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t);background:rgba(29,158,117,.1);border:1px solid rgba(93,202,165,.25);border-radius:20px;padding:5px 12px}
+.avail-dot{width:6px;height:6px;border-radius:50%;background:var(--t);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.tb-links{display:flex;gap:4px}
+.tb-link{background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 10px;color:var(--muted);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:5px;text-decoration:none;transition:all .15s;font-family:'Inter',sans-serif}
+.tb-link:hover{border-color:var(--p);color:var(--p)}
+.tb-link i{font-size:15px}
+
+/* ── SIDEBAR ── */
+#sidebar{background:var(--surf);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 12px;gap:4px;overflow-y:auto}
+.nav-section{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);padding:12px 10px 6px;margin-top:4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:13px;font-weight:500;transition:all .15s;border:none;background:transparent;width:100%;text-align:left}
+.nav-item i{font-size:17px;flex-shrink:0}
+.nav-item:hover{background:var(--card);color:var(--text)}
+.nav-item.active{background:rgba(127,119,221,.12);color:var(--p);border-right:2px solid var(--p)}
+.nav-badge{margin-left:auto;font-size:10px;background:var(--p);color:#fff;border-radius:10px;padding:2px 7px}
+.sidebar-footer{margin-top:auto;padding-top:16px;border-top:1px solid var(--border)}
+.sidebar-user{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.sidebar-avatar{width:34px;height:34px;border-radius:50%;background:rgba(127,119,221,.15);border:2px solid var(--p);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--p);flex-shrink:0}
+.sidebar-name{font-size:13px;font-weight:500}
+.sidebar-role{font-size:11px;color:var(--muted)}
+
+/* ── MAIN ── */
+#main{background:var(--bg);overflow-y:auto;position:relative}
+.page{display:none;padding:32px 36px;min-height:100%;animation:fadein .2s ease}
+.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page-header{margin-bottom:28px}
+.page-eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--p);margin-bottom:6px}
+.page-title{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.page-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .15s}
+.card:hover{border-color:rgba(127,119,221,.4)}
+.card-sm{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+
+/* ── GRID LAYOUTS ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+
+/* ── HOME PAGE ── */
+.hero-section{display:grid;grid-template-columns:1fr 340px;gap:24px;margin-bottom:24px}
+.hero-main{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.hero-avatar{width:64px;height:64px;border-radius:50%;background:rgba(127,119,221,.15);border:2.5px solid var(--p);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--p);margin-bottom:16px;cursor:pointer;transition:transform .2s}
+.hero-avatar:hover{transform:scale(1.08)}
+.hero-name{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.hero-typing{font-size:13px;color:var(--p-mid);min-height:18px;margin-bottom:12px}
+.cursor{display:inline-block;width:2px;height:12px;background:var(--p);margin-left:2px;vertical-align:middle;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;text-decoration:none;transition:all .15s;font-family:'Inter',sans-serif}
+.btn-primary{background:var(--p);color:#fff}
+.btn-primary:hover{background:var(--p-dark)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--p);color:var(--p)}
+.terminal-card{background:#0A0D16;border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.term-bar{background:var(--card);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.term-body{padding:16px 18px;font-family:'Courier New',monospace;font-size:12px;line-height:2}
+.tc{color:var(--p)}.tw{color:var(--text)}.tg{color:#28c840}.ty{color:#febc2e}.tm{color:var(--muted)}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:border-color .15s}
+.stat-card:hover{border-color:var(--p)}
+.stat-num{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700}
+.stat-label{font-size:11px;color:var(--muted);margin-top:3px}
+.mood-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:14px}
+.mood-title{font-size:12px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.mood-title i{font-size:15px;color:var(--a)}
+.mood-chips{display:flex;gap:8px;flex-wrap:wrap}
+.mchip{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif}
+.mchip:hover,.mchip.on{background:rgba(127,119,221,.12);border-color:var(--p);color:var(--p-mid)}
+.mood-reply{margin-top:10px;font-size:12px;color:var(--p-mid);font-style:italic;min-height:16px}
+.fact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.fact-text{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px;transition:opacity .15s}
+.fact-refresh{font-size:12px;color:var(--p);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:color .15s}
+.fact-refresh:hover{color:var(--p-mid)}
+
+/* ── PROJECTS ── */
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:border-color .15s;display:flex;flex-direction:column;gap:10px}
+.proj-card:hover{border-color:rgba(127,119,221,.5)}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-start}
+.proj-title{font-size:15px;font-weight:600}
+.live-badge{font-size:10px;background:rgba(29,158,117,.12);color:var(--t);border:1px solid rgba(93,202,165,.3);border-radius:20px;padding:3px 9px;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--t)}
+.proj-desc{font-size:12px;color:var(--muted);line-height:1.6;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:10px;padding:3px 8px;border-radius:4px;font-weight:500}
+.tp{background:rgba(127,119,221,.12);color:var(--p-mid)}
+.tt{background:rgba(29,158,117,.1);color:var(--t)}
+.ta{background:rgba(212,83,126,.1);color:var(--a)}
+.proj-btns{display:flex;gap:8px}
+.pbtn{font-size:11px;padding:6px 12px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;font-family:'Inter',sans-serif}
+.pbtn:hover,.pbtn.accent{border-color:var(--p);color:var(--p)}
+.pbtn.accent{background:rgba(127,119,221,.1)}
+
+/* ── SKILLS ── */
+.skill-group-title{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.srow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}
+.srow:last-child{border-bottom:none}
+.sname{font-size:13px;min-width:140px}
+.sbar-wrap{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden;cursor:pointer}
+.sbar{height:100%;border-radius:3px;width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.sp{background:var(--p)}.st{background:var(--t)}.sa{background:var(--a)}
+.spct{font-size:11px;color:var(--hint);min-width:30px;text-align:right}
+
+/* ── ABOUT ── */
+.info-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:13px}
+.info-row:last-child{border-bottom:none}
+.info-row i{font-size:18px;color:var(--p);margin-top:1px;flex-shrink:0}
+.info-val{color:var(--text)}
+.info-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.cert-item{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .15s}
+.cert-item:hover{border-color:var(--a)}
+.cert-item i{font-size:18px;color:var(--a);flex-shrink:0}
+.cert-name{font-size:13px;font-weight:500}
+.cert-org{font-size:11px;color:var(--muted)}
+
+/* ── CONTACT ── */
+.contact-hero{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center;margin-bottom:20px}
+.ch-title{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;margin-bottom:8px}
+.ch-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.clinks{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px;margin:0 auto}
+.clink{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);transition:border-color .15s}
+.clink:hover{border-color:var(--p)}
+.clink i{font-size:22px;color:var(--p)}
+.clink-t{font-size:13px;font-weight:500}
+.clink-s{font-size:11px;color:var(--muted)}
+.resume-banner{background:rgba(127,119,221,.08);border:1px solid rgba(127,119,221,.25);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+.rb-left{display:flex;align-items:center;gap:14px}
+.rb-left i{font-size:32px;color:var(--p)}
+.rb-title{font-size:15px;font-weight:600;color:var(--p-mid)}
+.rb-sub{font-size:11px;color:var(--p);opacity:.7;margin-top:2px}
+.dl-btn{background:var(--p);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;transition:background .15s;font-family:'Inter',sans-serif}
+.dl-btn:hover{background:var(--p-dark)}
+.msg-form{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px}
+.mf-title{font-size:14px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.mf-title i{font-size:17px;color:var(--a)}
+.field{margin-bottom:12px}
+.field label{font-size:11px;color:var(--muted);display:block;margin-bottom:5px}
+.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 13px;font-size:13px;color:var(--text);font-family:'Inter',sans-serif;resize:none;outline:none;transition:border-color .15s}
+.field input:focus,.field textarea:focus{border-color:var(--p)}
+.send-btn{background:var(--p);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .15s;font-family:'Inter',sans-serif}
+.send-btn:hover{background:var(--p-dark)}
+.send-success{text-align:center;padding:28px;display:none}
+.send-success i{font-size:40px;color:var(--t);display:block;margin-bottom:12px}
+.send-success p{font-size:13px;color:var(--muted)}
+
+/* ── CHIBI ASSISTANT ── */
+#chibi-wrap{position:fixed;bottom:0;right:32px;display:flex;flex-direction:column;align-items:center;cursor:pointer;z-index:200}
+#chibi-bubble{background:var(--card);border:1px solid var(--border);border-radius:12px 12px 0 12px;padding:8px 13px;font-size:12px;color:var(--text);max-width:150px;text-align:center;margin-bottom:8px;line-height:1.4;transition:opacity .2s;position:relative}
+#chibi-svg{width:72px;height:auto;display:block;transform-origin:bottom center;animation:bob 3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+#chibi-wrap:hover #chibi-svg{animation:wag 0.5s ease-in-out}
+@keyframes wag{0%{transform:rotate(0)}25%{transform:rotate(-7deg)}75%{transform:rotate(7deg)}100%{transform:rotate(0)}}
+
+/* ── CHAT PANEL ── */
+#chat-panel{position:fixed;bottom:0;right:24px;width:300px;background:var(--surf);border:1px solid var(--border);border-radius:16px 16px 0 0;display:none;flex-direction:column;z-index:300;max-height:480px;box-shadow:0 -4px 24px rgba(0,0,0,.4)}
+#chat-panel.open{display:flex}
+#chat-hdr{background:var(--p);border-radius:16px 16px 0 0;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+#chat-hdr-l{display:flex;align-items:center;gap:10px}
+#chat-mini-av{width:30px;height:30px;border-radius:50%;background:#EEEDFE;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#534AB7}
+#chat-nm{font-size:13px;font-weight:600;color:#fff}
+#chat-sb{font-size:10px;color:#CECBF6}
+#chat-close{background:none;border:none;color:#CECBF6;cursor:pointer;font-size:20px;line-height:1;padding:0;transition:color .15s}
+#chat-close:hover{color:#fff}
+#chat-msgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-height:220px;max-height:320px}
+.cmsg{max-width:88%;font-size:12px;line-height:1.55;padding:9px 11px;border-radius:10px}
+.cmsg.bot{background:var(--card);color:var(--text);align-self:flex-start;border-bottom-left-radius:3px}
+.cmsg.user{background:var(--p);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.cmsg.typing{background:var(--card);align-self:flex-start;padding:11px 14px}
+.tdots{display:flex;gap:4px}
+.tdots span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:td 1.2s ease-in-out infinite}
+.tdots span:nth-child(2){animation-delay:.2s}
+.tdots span:nth-child(3){animation-delay:.4s}
+@keyframes td{0%,80%,100%{transform:scale(.75);opacity:.4}40%{transform:scale(1);opacity:1}}
+.qchips{display:flex;flex-wrap:wrap;gap:5px;padding:8px 12px 0}
+.qchip{font-size:11px;padding:4px 10px;border:1px solid var(--border);border-radius:20px;cursor:pointer;color:var(--muted);background:transparent;transition:all .15s;font-family:'Inter',sans-serif}
+.qchip:hover{border-color:var(--p);color:var(--p)}
+#chat-input-row{border-top:1px solid var(--border);padding:10px 12px;display:flex;gap:7px;align-items:center}
+#chat-inp{flex:1;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:8px 13px;font-size:12px;color:var(--text);outline:none;font-family:'Inter',sans-serif;transition:border-color .15s}
+#chat-inp:focus{border-color:var(--p)}
+#chat-send{background:var(--p);border:none;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:background .15s}
+#chat-send:hover{background:var(--p-dark)}
+#chat-send i{font-size:14px;color:#fff}
+
+@media(max-width:768px){
+  #shell{grid-template-columns:1fr;grid-template-rows:56px auto 1fr}
+  #sidebar{display:none}
+  #main{overflow-y:auto}
+}
+</style>
+</head>
+<body>
+<div id="shell">
+
+  <!-- TOPBAR -->
+  <header id="topbar">
+    <div class="tb-logo">Ranojoy Saha</div>
+    <div class="tb-right">
+      <div class="avail-pill"><div class="avail-dot"></div>Open to internships</div>
+      <div class="tb-links">
+        <a class="tb-link" href="https://github.com/ron999coder" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a>
+        <a class="tb-link" href="https://www.linkedin.com/in/ranojoy-saha-bb6a732b6" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+        <a class="tb-link" href="https://spam-email-classifier-1-55kz.onrender.com/" target="_blank"><i class="ti ti-rocket"></i>Live demo</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar">
+    <div class="nav-section">Menu</div>
+    <button class="nav-item active" onclick="goto('home',this)"><i class="ti ti-home"></i>Home</button>
+    <button class="nav-item" onclick="goto('projects',this)"><i class="ti ti-layout-cards"></i>Projects<span class="nav-badge">3</span></button>
+    <button class="nav-item" onclick="goto('skills',this)"><i class="ti ti-chart-bar"></i>Skills</button>
+    <div class="nav-section">Info</div>
+    <button class="nav-item" onclick="goto('about',this)"><i class="ti ti-user"></i>About me</button>
+    <button class="nav-item" onclick="goto('contact',this)"><i class="ti ti-mail"></i>Contact</button>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">RS</div>
+        <div>
+          <div class="sidebar-name">Ranojoy Saha</div>
+          <div class="sidebar-role">B.Tech CSE · AI/ML</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="main">
+
+    <!-- HOME -->
+    <div class="page active" id="page-home">
+      <div class="hero-section">
+        <div class="hero-main">
+          <div class="hero-avatar" onclick="avatarEgg(this)">RS</div>
+          <div class="hero-name">Ranojoy Saha</div>
+          <div class="hero-typing"><span id="typed"></span><span class="cursor"></span></div>
+          <p class="hero-desc">Third-year B.Tech CSE (AI/ML) student at Techno International New Town, Kolkata. I build ML models and deploy them — not just notebooks. Logistic Regression from scratch, NLP pipelines, Flask APIs.</p>
+          <div class="hero-btns">
+            <button class="btn btn-primary" onclick="goto('projects',document.querySelectorAll('.nav-item')[1])"><i class="ti ti-layout-cards"></i>View projects</button>
+            <a class="btn btn-ghost" href="https://github.com/ron999coder" target="_blank"><i class="ti ti-brand-github"></i>GitHub</a>
+            <button class="btn btn-ghost" onclick="goto('contact',document.querySelectorAll('.nav-item')[4])"><i class="ti ti-mail"></i>Contact me</button>
+          </div>
+        </div>
+        <div class="terminal-card">
+          <div class="term-bar">
+            <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+            <span style="font-size:11px;color:var(--muted);margin-left:8px">ron@portfolio ~ python</span>
+          </div>
+          <div class="term-body">
+            <div><span class="tc">~</span> <span class="tw">python spam_classifier.py</span></div>
+            <div class="tm">Loading TF-IDF model... ✓</div>
+            <div class="tm">Vectorizing input text...</div>
+            <div><span class="tg">Prediction: HAM ✓</span></div>
+            <div><span class="ty">Confidence: 97.3%</span></div>
+            <br>
+            <div><span class="tc">~</span> <span class="tw">python cancer_detect.py</span></div>
+            <div class="tm">NumPy-only LR loading...</div>
+            <div><span class="tg">Result: Benign ✓  Acc: 94.7%</span></div>
+            <br>
+            <div><span class="tc">~</span> <span class="tw">git push origin main</span></div>
+            <div><span class="tg">→ Deployed to Render ✓</span></div>
+            <br>
+            <div><span class="tc">~</span> <span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="g3" style="margin-bottom:14px">
+        <div class="stat-card" onclick="goto('projects',document.querySelectorAll('.nav-item')[1])">
+          <div class="stat-num" style="color:var(--p)">3+</div>
+          <div class="stat-label">Projects built</div>
+        </div>
+        <div class="stat-card" onclick="goto('about',document.querySelectorAll('.nav-item')[3])">
+          <div class="stat-num" style="color:var(--a)">6</div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-card" onclick="goto('projects',document.querySelectorAll('.nav-item')[1])">
+          <div class="stat-num" style="color:var(--t)">2</div>
+          <div class="stat-label">Live apps</div>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="mood-card">
+          <div class="mood-title"><i class="ti ti-mood-smile"></i>What brings you here?</div>
+          <div class="mood-chips">
+            <button class="mchip" onclick="setMood(this,'hire')">Hiring</button>
+            <button class="mchip" onclick="setMood(this,'collab')">Collaboration</button>
+            <button class="mchip" onclick="setMood(this,'curious')">Just curious</button>
+            <button class="mchip" onclick="setMood(this,'learn')">Learning</button>
+          </div>
+          <div class="mood-reply" id="mood-reply"></div>
+        </div>
+        <div class="fact-card">
+          <div class="mood-title"><i class="ti ti-bulb"></i>Fun fact about me</div>
+          <div class="fact-text" id="fact-text">I built Logistic Regression from scratch — no Scikit-learn, just NumPy and math.</div>
+          <div class="fact-refresh" onclick="nextFact()"><i class="ti ti-refresh"></i>Another one</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="page" id="page-projects">
+      <div class="page-header">
+        <div class="page-eyebrow">Work</div>
+        <div class="page-title">Projects</div>
+        <div class="page-sub">ML models and web apps — all deployed or open source</div>
+      </div>
+      <div class="g2">
+        <div class="proj-card">
+          <div class="proj-head">
+            <div class="proj-title">Spam email classifier</div>
+            <div class="live-badge"><div class="live-dot"></div>Live</div>
+          </div>
+          <p class="proj-desc">NLP-powered spam detection using TF-IDF vectorisation + Naive Bayes. Deployed live on Render — paste any email content and get an instant classification with a confidence score.</p>
+          <div class="tags"><span class="tag tp">Python</span><span class="tag tt">NLTK</span><span class="tag tp">TF-IDF</span><span class="tag tt">Naive Bayes</span><span class="tag ta">Flask</span><span class="tag tt">Render</span></div>
+          <div class="proj-btns">
+            <button class="pbtn accent" onclick="window.open('https://spam-email-classifier-1-55kz.onrender.com/','_blank')"><i class="ti ti-external-link"></i>Open app</button>
+          </div>
+        </div>
+        <div class="proj-card">
+          <div class="proj-head"><div class="proj-title">Breast cancer detection</div></div>
+          <p class="proj-desc">Logistic Regression classifier built entirely from scratch — NumPy only, no Scikit-learn shortcuts. Achieves competitive accuracy on the Wisconsin Breast Cancer dataset with a Flask prediction interface.</p>
+          <div class="tags"><span class="tag tp">Python</span><span class="tag tp">NumPy</span><span class="tag ta">Logistic Regression</span><span class="tag ta">Flask</span></div>
+          <div class="proj-btns">
+            <button class="pbtn" onclick="window.open('https://github.com/ron999coder/breast-cancer','_blank')"><i class="ti ti-brand-github"></i>GitHub</button>
+          </div>
+        </div>
+        <div class="proj-card" style="grid-column:1/-1">
+          <div class="proj-head"><div class="proj-title">NEXUS — Campus event discovery platform</div></div>
+          <p class="proj-desc">Web app centralising campus event discovery with AI-powered recommendations. Features a club/organiser portal and analytics dashboard so students never miss events relevant to them. Built for the MAKAUT campus ecosystem.</p>
+          <div class="tags"><span class="tag ta">Web app</span><span class="tag tp">AI recommendations</span><span class="tag ta">Flask</span><span class="tag tt">Analytics</span><span class="tag tp">Club portal</span></div>
+          <div class="proj-btns">
+            <button class="pbtn"><i class="ti ti-brand-github"></i>GitHub (coming soon)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="page" id="page-skills">
+      <div class="page-header">
+        <div class="page-eyebrow">Technical stack</div>
+        <div class="page-title">Skills</div>
+        <div class="page-sub">Click any bar to replay the animation</div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="skill-group-title">Languages</div>
+          <div class="srow"><span class="sname">Python</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sp" data-w="92"></div></div><span class="spct">92%</span></div>
+          <div class="srow"><span class="sname">C / C++</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sp" data-w="72"></div></div><span class="spct">72%</span></div>
+          <div class="srow"><span class="sname">Java</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sp" data-w="65"></div></div><span class="spct">65%</span></div>
+          <div class="srow"><span class="sname">SQL</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sp" data-w="70"></div></div><span class="spct">70%</span></div>
+          <div class="srow"><span class="sname">HTML / CSS</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sp" data-w="68"></div></div><span class="spct">68%</span></div>
+        </div>
+        <div class="card">
+          <div class="skill-group-title">ML / AI</div>
+          <div class="srow"><span class="sname">Scikit-learn</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar st" data-w="85"></div></div><span class="spct">85%</span></div>
+          <div class="srow"><span class="sname">NumPy / Pandas</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar st" data-w="88"></div></div><span class="spct">88%</span></div>
+          <div class="srow"><span class="sname">NLTK / NLP</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar st" data-w="78"></div></div><span class="spct">78%</span></div>
+          <div class="srow"><span class="sname">LLMs</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar st" data-w="60"></div></div><span class="spct">60%</span></div>
+          <div class="srow"><span class="sname">TF-IDF / Text ML</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar st" data-w="82"></div></div><span class="spct">82%</span></div>
+        </div>
+        <div class="card" style="grid-column:1/-1">
+          <div class="skill-group-title">Web, tools & cloud</div>
+          <div class="g2" style="gap:0">
+            <div>
+              <div class="srow"><span class="sname">Flask</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sa" data-w="82"></div></div><span class="spct">82%</span></div>
+              <div class="srow"><span class="sname">REST APIs</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sa" data-w="75"></div></div><span class="spct">75%</span></div>
+            </div>
+            <div>
+              <div class="srow"><span class="sname">Git / GitHub</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sa" data-w="88"></div></div><span class="spct">88%</span></div>
+              <div class="srow"><span class="sname">AWS / Render</span><div class="sbar-wrap" onclick="pingBar(this)"><div class="sbar sa" data-w="60"></div></div><span class="spct">60%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="page" id="page-about">
+      <div class="page-header">
+        <div class="page-eyebrow">Background</div>
+        <div class="page-title">About me</div>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="info-row"><i class="ti ti-school"></i><div><div class="info-val">Techno International New Town, Kolkata</div><div class="info-sub">B.Tech CSE (AI/ML) · MAKAUT · Semester VI</div></div></div>
+          <div class="info-row"><i class="ti ti-map-pin"></i><div><div class="info-val">Kolkata, West Bengal, India</div></div></div>
+          <div class="info-row"><i class="ti ti-award"></i><div><div class="info-val">Hacktoberfest 2025 contributor</div><div class="info-sub">Open source</div></div></div>
+          <div class="info-row"><i class="ti ti-device-desktop-code"></i><div><div class="info-val">GitHub · LeetCode · LinkedIn</div><div class="info-sub">ron999coder</div></div></div>
+          <div class="info-row"><i class="ti ti-book"></i><div><div class="info-val">Class X — 91.2% (ICSE)</div><div class="info-sub">Class XII — 82.5% (ICSE)</div></div></div>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--hint);margin-bottom:12px">Certifications</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">OCI Generative AI Professional</div><div class="cert-org">Oracle Cloud Infrastructure</div></div></div>
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">OCI AI Foundations Associate</div><div class="cert-org">Oracle Cloud Infrastructure</div></div></div>
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">Large Language Models</div><div class="cert-org">IBM SkillBuild</div></div></div>
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">AWS Cloud Virtual Experience</div><div class="cert-org">AWS / Forage</div></div></div>
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">Technology Consulting</div><div class="cert-org">Deloitte / Forage</div></div></div>
+            <div class="cert-item"><i class="ti ti-certificate"></i><div><div class="cert-name">Google Developer Certification</div><div class="cert-org">Google</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="page" id="page-contact">
+      <div class="page-header">
+        <div class="page-eyebrow">Get in touch</div>
+        <div class="page-title">Contact</div>
+      </div>
+      <div class="contact-hero">
+        <div class="ch-title">Let's build something together</div>
+        <div class="ch-sub">Open to internships, collaborations, and interesting projects.</div>
+        <div class="clinks">
+          <a class="clink" href="https://github.com/ron999coder" target="_blank"><i class="ti ti-brand-github"></i><div><div class="clink-t">GitHub</div><div class="clink-s">ron999coder</div></div></a>
+          <a class="clink" href="https://www.linkedin.com/in/ranojoy-saha-bb6a732b6" target="_blank"><i class="ti ti-brand-linkedin"></i><div><div class="clink-t">LinkedIn</div><div class="clink-s">Connect</div></div></a>
+          <a class="clink" href="https://leetcode.com/u/ranojoy__saha/" target="_blank"><i class="ti ti-code"></i><div><div class="clink-t">LeetCode</div><div class="clink-s">DSA grind</div></div></a>
+          <a class="clink" href="mailto:ranojoysaha6@gmail.com"><i class="ti ti-mail"></i><div><div class="clink-t">Email</div><div class="clink-s">Direct mail</div></div></a>
+        </div>
+      </div>
+      <div class="resume-banner">
+        <div class="rb-left">
+          <i class="ti ti-file-cv"></i>
+          <div>
+            <div class="rb-title">Ranojoy Saha — Resume</div>
+            <div class="rb-sub">B.Tech CSE (AI/ML) · Updated 2025</div>
+          </div>
+        </div>
+        <button class="dl-btn" id="dl-btn" onclick="resumeClick()"><i class="ti ti-download"></i>Download PDF</button>
+      </div>
+      <div class="msg-form">
+        <div class="mf-title"><i class="ti ti-message-circle"></i>Send a message</div>
+        <div id="mf-fields">
+          <div class="g2">
+            <div class="field"><label>Your name</label><input type="text" id="f-name" placeholder="e.g. Priya Sharma"/></div>
+            <div class="field"><label>Email</label><input type="email" id="f-email" placeholder="you@example.com"/></div>
+          </div>
+          <div class="field"><label>Message</label><textarea id="f-msg" rows="4" placeholder="Tell me about the opportunity or project..."></textarea></div>
+          <button class="send-btn" id="send-btn" onclick="sendMsg()"><i class="ti ti-send"></i>Send message</button>
+        </div>
+        <div class="send-success" id="send-success">
+          <i class="ti ti-circle-check"></i>
+          <p id="success-msg"></p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- CHIBI ASSISTANT -->
+<div id="chibi-wrap" onclick="toggleChat()">
+  <div id="chibi-bubble">Hi! Ask me about Ron</div>
+  <svg id="chibi-svg" viewBox="0 0 72 102" xmlns="http://www.w3.org/2000/svg" width="72">
+    <ellipse cx="36" cy="22" rx="16" ry="17" fill="#F5C4B3"/>
+    <ellipse cx="28" cy="20" rx="2.5" ry="3" fill="#1A1A2E"/>
+    <ellipse cx="44" cy="20" rx="2.5" ry="3" fill="#1A1A2E"/>
+    <ellipse cx="29" cy="19" rx="1" ry="1" fill="#fff"/>
+    <ellipse cx="45" cy="19" rx="1" ry="1" fill="#fff"/>
+    <path d="M30 29 Q36 34 42 29" stroke="#C97B5A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <path d="M20 17 Q22 10 36 9 Q50 10 52 17" fill="#26215C"/>
+    <ellipse cx="20" cy="20" rx="3" ry="4" fill="#F5C4B3"/>
+    <ellipse cx="52" cy="20" rx="3" ry="4" fill="#F5C4B3"/>
+    <rect x="20" y="38" width="32" height="34" rx="6" fill="#7F77DD"/>
+    <rect x="24" y="44" width="10" height="12" rx="2" fill="#EEEDFE" opacity=".65"/>
+    <text x="29" y="53" text-anchor="middle" font-size="6" fill="#534AB7" font-weight="600" font-family="monospace">ML</text>
+    <rect x="38" y="44" width="10" height="12" rx="2" fill="#EEEDFE" opacity=".65"/>
+    <text x="43" y="53" text-anchor="middle" font-size="6" fill="#534AB7" font-weight="600" font-family="monospace">AI</text>
+    <rect x="20" y="70" width="12" height="30" rx="4" fill="#26215C"/>
+    <rect x="40" y="70" width="12" height="30" rx="4" fill="#26215C"/>
+    <rect x="20" y="92" width="12" height="8" rx="3" fill="#534AB7"/>
+    <rect x="40" y="92" width="12" height="8" rx="3" fill="#534AB7"/>
+    <rect x="8" y="40" width="10" height="24" rx="4" fill="#7F77DD"/>
+    <rect x="54" y="40" width="10" height="24" rx="4" fill="#7F77DD"/>
+    <rect x="6" y="57" width="7" height="10" rx="3" fill="#EEEDFE"/>
+    <rect x="59" y="57" width="7" height="10" rx="3" fill="#EEEDFE"/>
+  </svg>
+</div>
+
+<!-- CHAT PANEL -->
+<div id="chat-panel">
+  <div id="chat-hdr">
+    <div id="chat-hdr-l">
+      <div id="chat-mini-av">RS</div>
+      <div>
+        <div id="chat-nm">Ron's assistant</div>
+        <div id="chat-sb">Ask me anything about Ron</div>
+      </div>
+    </div>
+    <button id="chat-close" onclick="toggleChat()" aria-label="Close"><i class="ti ti-x"></i></button>
+  </div>
+  <div class="qchips" id="qchips">
+    <button class="qchip" onclick="quickAsk('What projects has Ron built?')">Projects</button>
+    <button class="qchip" onclick="quickAsk('What are Ron\'s skills?')">Skills</button>
+    <button class="qchip" onclick="quickAsk('Is Ron available for internships?')">Hiring</button>
+    <button class="qchip" onclick="quickAsk('Tell me about Ron\'s certifications')">Certs</button>
+    <button class="qchip" onclick="quickAsk('Where does Ron study?')">Education</button>
+  </div>
+  <div id="chat-msgs">
+    <div class="cmsg bot">Hey there! I'm Ron's virtual assistant. Ask me anything about his projects, skills, or background!</div>
+  </div>
+  <div id="chat-input-row">
+    <input id="chat-inp" type="text" placeholder="Ask about Ron..." onkeydown="if(event.key==='Enter')sendChatMsg()"/>
+    <button id="chat-send" onclick="sendChatMsg()" aria-label="Send"><i class="ti ti-send"></i></button>
+  </div>
+</div>
+
+<script>
+/* ── NAV ── */
+function goto(name,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='skills')setTimeout(animateBars,80);
+  document.getElementById('main').scrollTop=0;
+}
+
+/* ── SKILLS ── */
+function animateBars(){
+  document.querySelectorAll('.sbar').forEach(b=>{b.style.width='0';setTimeout(()=>{b.style.width=b.dataset.w+'%'},60)});
+}
+function pingBar(wrap){
+  const b=wrap.querySelector('.sbar');
+  b.style.transition='width .15s';b.style.width='0';
+  setTimeout(()=>{b.style.transition='width 1s cubic-bezier(.4,0,.2,1)';b.style.width=b.dataset.w+'%'},120);
+}
+
+/* ── TYPING ── */
+const roles=['ML Engineer','Flask Developer','NLP enthusiast','Open source contributor','B.Tech CSE (AI/ML)'];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('typed');
+function type(){
+  const cur=roles[ri];
+  if(!del){el.textContent=cur.slice(0,ci+1);ci++;if(ci===cur.length){del=true;setTimeout(type,1700);return}}
+  else{el.textContent=cur.slice(0,ci-1);ci--;if(ci===0){del=false;ri=(ri+1)%roles.length}}
+  setTimeout(type,del?45:78);
+}
+type();
+
+/* ── MOOD ── */
+const moods={
+  hire:"Great! I'm actively looking for internships in ML and backend dev. Head to Contact — let's talk!",
+  collab:"Awesome — I love building things with people. Drop me a message!",
+  curious:"Welcome! Feel free to explore. Hit the chibi in the corner if you have questions.",
+  learn:"Love it — check out my projects, all the code is on GitHub."
+};
+function setMood(btn,key){
+  document.querySelectorAll('.mchip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('mood-reply').textContent=moods[key];
+}
+
+/* ── FACTS ── */
+const facts=[
+  'I built Logistic Regression from scratch — no Scikit-learn, just NumPy and math.',
+  'My Spam Classifier is live on Render right now. Go try it!',
+  'I scored 91.2% in Class X (ICSE) and contributed to Hacktoberfest 2025.',
+  'I hold an Oracle OCI Generative AI Professional certification.',
+  'NEXUS, my campus event platform, uses AI to recommend events to students.',
+  'I actively grind LeetCode alongside building real ML projects.',
+  'I have certifications from Oracle, IBM, AWS, Deloitte, and Google.',
+  'I deployed my first Flask app to Render as a 2nd-year student.'
+];
+let fi=0;
+function nextFact(){
+  fi=(fi+1)%facts.length;
+  const t=document.getElementById('fact-text');
+  t.style.opacity='0';
+  setTimeout(()=>{t.textContent=facts[fi];t.style.opacity='1'},160);
+}
+
+/* ── AVATAR EGG ── */
+function avatarEgg(el){
+  const msgs=['Hey!','Build. Deploy. Repeat.','Open to internships!','Check my projects!','Let\'s collab!'];
+  el.style.transform='scale(1.18)';
+  setTimeout(()=>{el.style.transform=''},200);
+}
+
+/* ── CONTACT ── */
+function resumeClick(){
+  const RESUME_URL='https://rsresume-858e09.tiiny.site';
+  const btn=document.getElementById('dl-btn');
+  if(RESUME_URL==='YOUR_RESUME_PDF_URL_HERE'){
+    btn.innerHTML='<i class="ti ti-alert-circle"></i>Add PDF URL in code';
+    btn.style.background='#BA7517';
+    setTimeout(()=>{btn.innerHTML='<i class="ti ti-download"></i>Download PDF';btn.style.background=''},2200);
+    return;
+  }
+  window.open(RESUME_URL,'_blank');
+}
+function sendMsg(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const msg=document.getElementById('f-msg').value.trim();
+  const btn=document.getElementById('send-btn');
+  if(!name||!email||!msg){
+    btn.style.background='#A32D2D';btn.textContent='Fill all fields';
+    setTimeout(()=>{btn.innerHTML='<i class="ti ti-send"></i>Send message';btn.style.background=''},1500);
+    return;
+  }
+  document.getElementById('mf-fields').style.display='none';
+  document.getElementById('send-success').style.display='block';
+  document.getElementById('success-msg').textContent="Thanks "+name+"! I'll get back to you at "+email+" soon.";
+}
+
+/* ── CHIBI BUBBLE CYCLE ── */
+const bubbles=['Hi! Ask me about Ron','Click to chat!','I know everything about Ron','Need the resume?','Ask about my projects!'];
+let bi=0;
+setInterval(()=>{
+  bi=(bi+1)%bubbles.length;
+  const b=document.getElementById('chibi-bubble');
+  if(!document.getElementById('chat-panel').classList.contains('open')){
+    b.style.opacity='0';
+    setTimeout(()=>{b.textContent=bubbles[bi];b.style.opacity='1'},200);
+  }
+},3500);
+
+function toggleChat(){
+  const p=document.getElementById('chat-panel');
+  const open=p.classList.toggle('open');
+  document.getElementById('chibi-bubble').style.display=open?'none':'block';
+  if(open)document.getElementById('chat-inp').focus();
+}
+
+/* ── CHAT API ── */
+const SYSTEM=`You are Ron's (Ranojoy Saha) virtual portfolio assistant. Speak warmly and concisely about Ron in third person. Stay on-topic — only answer questions about Ron. If asked anything unrelated, politely redirect.
+
+Ron's profile:
+- Full name: Ranojoy Saha (Ron)
+- 3rd year B.Tech CSE (AI/ML), Techno International New Town, Kolkata (MAKAUT, Sem VI)
+- GitHub: github.com/ron999coder | Active on LeetCode & LinkedIn
+- Hacktoberfest 2025 contributor
+- Class X: 91.2% ICSE | Class XII: 82.5% ICSE
+
+Projects:
+1. Spam Email Classifier — TF-IDF + Naive Bayes, Flask, live: https://spam-email-classifier-1-55kz.onrender.com/
+2. Breast Cancer Detection — Logistic Regression from scratch (NumPy only), Flask UI, GitHub: github.com/ron999coder/breast-cancer
+3. NEXUS — AI-powered campus event discovery platform with club portal and analytics
+
+Skills: Python, C/C++, Java, SQL | Scikit-learn, NumPy, Pandas, NLTK, NLP, LLMs | Flask, REST APIs, AWS, Render, Git
+
+Certifications: OCI Generative AI Professional (Oracle), OCI AI Foundations Associate (Oracle), LLMs (IBM SkillBuild), AWS Cloud (Forage), Technology Consulting (Deloitte/Forage), Google Developer
+
+Status: Actively seeking ML / backend internships. Open to collaborations.
+
+Keep responses under 70 words. Be helpful and enthusiastic.`;
+
+function addChatMsg(text,role){
+  const box=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='cmsg '+role;
+  d.textContent=text;
+  box.appendChild(d);
+  box.scrollTop=box.scrollHeight;
+  return d;
+}
+function showTyping(){
+  const box=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='cmsg typing';d.id='typing-ind';
+  d.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
+  box.appendChild(d);box.scrollTop=box.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typing-ind');if(t)t.remove();}
+
+function quickAsk(q){
+  document.getElementById('qchips').style.display='none';
+  addChatMsg(q,'user');callAPI(q);
+}
+function sendChatMsg(){
+  const inp=document.getElementById('chat-inp');
+  const txt=inp.value.trim();if(!txt)return;
+  document.getElementById('qchips').style.display='none';
+  inp.value='';addChatMsg(txt,'user');callAPI(txt);
+}
+
+async function callAPI(msg){
+  showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:SYSTEM,messages:[{role:'user',content:msg}]})
+    });
+    const data=await res.json();
+    removeTyping();
+    const reply=data.content&&data.content[0]&&data.content[0].text?data.content[0].text:"Sorry, I couldn't connect. Try again!";
+    addChatMsg(reply,'bot');
+  }catch(e){
+    removeTyping();
+    addChatMsg("Hmm, connection issue. Try again in a sec!",'bot');
+  }
+}
+</script>
+</body>
+</html>
